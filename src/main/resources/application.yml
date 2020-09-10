@@ -1,0 +1,4 @@
+kafka:
+  bootstrap-address: localhost:9092
+  group-id: group
+  trusted-packages: com.camunda.consulting.externaltaskkafkademo.dto
