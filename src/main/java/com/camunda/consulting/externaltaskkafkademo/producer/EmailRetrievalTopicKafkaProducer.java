@@ -16,18 +16,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 @Slf4j
-@Component
-public class EmailTopicKafkaProducer implements CommandLineRunner {
+public class EmailRetrievalTopicKafkaProducer implements CommandLineRunner {
 
     private final KafkaTemplate<String, EmailTaskDto> kafkaTemplate;
     private final ExternalTaskClient externalTaskClient;
     private final ObjectMapper objectMapper;
 
     @Override
-    public void run(String... args){
-        externalTaskClient.subscribe("email-sending").lockDuration(30000L).handler(this::handleTask).open();
+    public void run(String... args) throws Exception {
+        externalTaskClient.subscribe("email-retrieving").lockDuration(30000L).handler(this::handleTask).open();
     }
 
     private void handleTask(ExternalTask externalTask, ExternalTaskService externalTaskService) {
@@ -38,14 +38,11 @@ public class EmailTopicKafkaProducer implements CommandLineRunner {
             EmailDto emailDto = objectMapper.readValue(emailDtoJson.getValue(), EmailDto.class);
             EmailTaskDto emailTaskDto = EmailTaskDto.builder().emailDto(emailDto).externalTask((ExternalTaskImpl) externalTask).build();
 
-            kafkaTemplate.send("email-topic", emailTaskDto);
+            kafkaTemplate.send("email-retrieving-topic", emailTaskDto);
 
             log.info("Published task {} into kafka", externalTask.getId());
-
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             log.error(e.getMessage(), e);
         }
     }
-
 }

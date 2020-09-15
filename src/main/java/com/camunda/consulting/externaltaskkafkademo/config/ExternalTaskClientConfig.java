@@ -18,6 +18,7 @@ public class ExternalTaskClientConfig {
     public ExternalTaskClient externalTaskClient() {
         return ExternalTaskClient.create()
                 .baseUrl(externalTaskClientSettings.getBaseUrl())
+                .workerId(externalTaskClientSettings.getWorkerId())
                 .asyncResponseTimeout(externalTaskClientSettings.getAsyncResponseTimeout())
                 .build();
     }

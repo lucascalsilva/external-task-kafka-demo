@@ -10,19 +10,28 @@
       <bpmn:outgoing>Flow_1guh8w1</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0kto306">
-      <bpmn:incoming>Flow_1guh8w1</bpmn:incoming>
+      <bpmn:incoming>Flow_0xj2npn</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1guh8w1" sourceRef="SendEmailTask" targetRef="Event_0kto306" />
+    <bpmn:sequenceFlow id="Flow_1guh8w1" sourceRef="SendEmailTask" targetRef="Activity_1qyf6di" />
+    <bpmn:sequenceFlow id="Flow_0xj2npn" sourceRef="Activity_1qyf6di" targetRef="Event_0kto306" />
+    <bpmn:serviceTask id="Activity_1qyf6di" name="Retrieve Email" camunda:type="external" camunda:topic="email-retrieving">
+      <bpmn:incoming>Flow_1guh8w1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xj2npn</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="EmailProcess">
+      <bpmndi:BPMNEdge id="Flow_1guh8w1_di" bpmnElement="Flow_1guh8w1">
+        <di:waypoint x="363" y="117" />
+        <di:waypoint x="410" y="117" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dkhovb_di" bpmnElement="Flow_0dkhovb">
         <di:waypoint x="215" y="117" />
         <di:waypoint x="263" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1guh8w1_di" bpmnElement="Flow_1guh8w1">
-        <di:waypoint x="363" y="117" />
-        <di:waypoint x="412" y="117" />
+      <bpmndi:BPMNEdge id="Flow_0xj2npn_di" bpmnElement="Flow_0xj2npn">
+        <di:waypoint x="510" y="117" />
+        <di:waypoint x="552" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="99" width="36" height="36" />
@@ -31,7 +40,10 @@
         <dc:Bounds x="263" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0kto306_di" bpmnElement="Event_0kto306">
-        <dc:Bounds x="412" y="99" width="36" height="36" />
+        <dc:Bounds x="552" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dpt7u3_di" bpmnElement="Activity_1qyf6di">
+        <dc:Bounds x="410" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

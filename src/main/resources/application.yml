@@ -2,3 +2,6 @@ kafka:
   bootstrap-address: localhost:9092
   group-id: group
   trusted-packages: com.camunda.consulting.externaltaskkafkademo.dto
+camunda.client:
+  baseUrl: http://localhost:8082/engine-rest
+  workerId: sample-worker

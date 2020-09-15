@@ -1,5 +1,6 @@
 package com.camunda.consulting.externaltaskkafkademo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.camunda.bpm.client.task.ExternalTask;
 import org.camunda.bpm.client.task.impl.ExternalTaskImpl;
@@ -10,10 +11,7 @@ import org.camunda.bpm.client.task.impl.ExternalTaskImpl;
 @NoArgsConstructor
 public class EmailTaskDto {
 
-    private String to;
-    private String from;
-    private String subject;
-    private String content;
+    private EmailDto emailDto;
     private ExternalTaskImpl externalTask;
 
 }

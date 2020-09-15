@@ -27,4 +27,9 @@ public class KafkaTopicConfig {
     public NewTopic emailTopic() {
         return new NewTopic("email-topic", 1, (short) 1);
     }
+
+    @Bean
+    public NewTopic emailRetrievalTopic() {
+        return new NewTopic("email-retrieving-topic", 1, (short) 1);
+    }
 }
